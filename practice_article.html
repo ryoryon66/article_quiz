@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<body>
+    
+    <textarea id = 'material' name="material" rows="40" cols="100">material</textarea><br>
+    <button onclick="submit_material()">generate_quiz</button> <br>
+    
+
+
+    <textarea id = "quiz" name="quiz" rows="40" cols="100">answer</textarea> <br>
+    <button>submit your answer</button> <br>
+
+    <div>正解率</div>
+
+    
+</body>
+<script>
+    function submit_material(){
+        let material = ($('#material').val());
+        let data = {'material':material};
+        json = JSON.stringify(data);  // object型からJSON文字列(string型)に変換
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/make_quiz',
+            data: json,
+            contentType: 'application/json',
+            success: function(data) {
+                $("#quiz").val(data['quiz'])
+            },
+            error: function(msg) {
+                alert('server error');
+            }
+        });
+
+
+        
+  
+ 
+
+    
+    }
+</script>
+
+<style>
+    .textarea {
+        resize: none;
+        line-height: 1.5;
+        width: 100%;
+        padding: 10;
+      }
+</style>
+</html>

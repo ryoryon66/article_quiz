@@ -1,4 +1,4 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify, render_template,request
 import utility
 from flask_cors import CORS
  
@@ -14,7 +14,7 @@ def after_request(response):
  
 @app.route('/')
 def hello_world():
-    return jsonify({'message': 'Hello world'})
+    return render_template('practice_article.html')
 
 @app.route('/make_quiz',methods = ["POST"])
 def make_quiz():

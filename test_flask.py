@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, render_template,request
 import utility
 from flask_cors import CORS
- 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -11,7 +11,7 @@ def after_request(response):
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   return response
- 
+
 @app.route('/')
 def hello_world():
     return render_template('practice_article.html')
@@ -25,8 +25,8 @@ def make_quiz():
 
 
     return jsonify({'quiz':utility.make_quiz(material)})
-    
- 
+
+
 if __name__ == "__main__":
-    app.run(host='http://arc.lsta.media.kyoto-u.ac.jp/', port=8889, debug=True)
-    #app.run(host='127.0.0.1', port=8888, debug=True)
+    app.run(host='0.0.0.0', port=8889, debug = False)                                                                  
+    #app.run(host='127.0.0.1', port=8888, debug=True)   _

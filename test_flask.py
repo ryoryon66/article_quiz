@@ -13,19 +13,34 @@ def after_request(response):
   return response
 
 @app.route('/')
-def hello_world():
+def index():
+    return render_template('index.html')
+
+@app.route('/article')
+def article():
     return render_template('practice_article.html')
 
-@app.route('/make_quiz',methods = ["POST"])
-def make_quiz():
-    print("hi")
+@app.route('/tense')
+def tense():
+    return render_template('practice_tense.html')
+
+@app.route('/make_article_quiz',methods = ["POST"])
+def make_article_quiz():
 
     material = request.json['material']  
     print(material)
 
 
-    return jsonify({'quiz':utility.make_quiz(material)})
+    return jsonify({'quiz':utility.make_article_quiz(material)})
+    
+@app.route('/make_tense_quiz',methods = ["POST"])
+def make_tense_quiz():
 
+    material = request.json['material']  
+    print(material)
+
+
+    return jsonify({'quiz':utility.make_tense_quiz(material)})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8889, debug = False)                                                                  

@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>冠詞穴埋め問題自動作成</title>
+    <title>時制穴埋め問題自動作成</title>
 </head>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <body>
     <p><a href="/">トップページ</a></p>
-    <h1>冠詞穴埋め問題作成支援</h1>
-    <p>英文テキストから冠詞穴埋め問題を作成するのを支援します。
-        英文テキストの冠詞を隠して上で適当な位置に問題を生成します。
-        各問題の答えは無冠詞,a,theのいずれかです。
-        無冠詞の場合は空文字列で回答してください。
-        冠詞の使い方をmasterしよう。<a href="/">top page</a></p>
-
+    <h1>時制穴埋め問題作成支援</h1>
+    <p>英文テキストから時制問題を作成するのを支援します。
+        カッコ内に表示されているのは動詞の現在形です。適切に時制を変化させてください。時制をmasterしよう！
+        </p>
+    
         <p><a href="https://en.wikipedia.org/wiki/Main_Page">サンプルテキスト(wikipedia top)</a></p>
 
     
@@ -43,7 +41,7 @@
         json = JSON.stringify(data);  // object型からJSON文字列(string型)に変換
         $.ajax({
             type: 'POST',
-            url: '/make_article_quiz',
+            url: '/make_tense_quiz',
             data: json,
             contentType: 'application/json',
             success: function(data) {

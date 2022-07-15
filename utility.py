@@ -5,7 +5,7 @@ nlp = spacy.load("en_core_web_lg")
 
 
 
-def make_quiz(original_doc:str) -> str:
+def make_article_quiz(original_doc:str) -> str:
     answer_key : dict[int,str] = dict()
     doc = nlp(original_doc)
     print(doc.noun_chunks)
@@ -28,7 +28,10 @@ def make_quiz(original_doc:str) -> str:
         if str(chunk[0]) in ['The','the','A','a','An','an']:
             chunk_after = f' (Q{problem_num}) '+str(chunk[1:])
         elif str(chunk[0]) in ["All","all","Both","both"]:
-            chunk_after = str(chunk[0]) + f' (Q{problem_num}) '+str(chunk[1:])
+            if len(chunk) > 1 and str(chunk[1]) in ['the','a','an']:
+                chunk_after =  str(chunk[0]) + f' (Q{problem_num}) '+str(chunk[2:])
+            else:
+                chunk_after = str(chunk[0]) + f' (Q{problem_num}) '+str(chunk[1:])
         elif chunk[0].pos_ in ['DET']:
             continue
 
@@ -43,10 +46,52 @@ def make_quiz(original_doc:str) -> str:
         print(original_doc)
         problem_num += 1
 
-
-
-    
     return original_doc
+
+
+
+
+def make_tense_quiz(original_doc:str) -> str:
+    answer_key : dict[int,str] = dict()
+    doc = nlp(original_doc)
+
+    ret = ""
+
+
+    problem_num = 1
+
+    for token in doc:
+        if token.pos_ not in ["VERB","AUX"]:
+            ret += str(token) + " "
+            continue
+
+        if token.pos_ in ["AUX"]:
+            lemma = token.text
+
+            auxs = [
+                ["can","could","Can","Could"],
+                ["will","would","Will","Would"],
+                ["may","might","May","Might"]
+            ]
+
+            for v in auxs:
+                if token.text in v:
+                    lemma = v[0]
+            
+            
+            ret += f"(Q{problem_num}  {lemma})" + " "
+            problem_num+=1
+            continue
+            
+
+
+
+        ret += f"(Q{problem_num}  {token.lemma_})" + " "
+        problem_num += 1
+
+   
+
+    return ret
 
 
 
@@ -57,7 +102,8 @@ if __name__ == "__main__":
     s = input()
     if s:
         document = s
-    print(make_quiz(document))
+    print(make_article_quiz(document))
+    print(make_tense_quiz(document))
 
     
 

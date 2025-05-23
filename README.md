@@ -1,6 +1,8 @@
 英文を入力すると，spacyを用いて自動で冠詞クイズ，時制クイズを作成するflask製web app.
 以前はheroku上で動かしていたが，現在は無料枠の消失で止まっているので気が向いたら別のクラウドにデプロイしなおしたい．
 
+EC2で動かしています． http://54.147.147.151:5000/
+
 # 入出力例
 ## 入力
 > The iMac G4 is an all-in-one personal computer produced by Apple Computer from January 2002 to August 2004. It comprises a hemispheric base that holds the computer components and a flatscreen liquid-crystal display (LCD) mounted above. The iMac G3, first released in 1998, helped save Apple from bankruptcy. Development of the iMac G4 took roughly two years, with Apple's designers exploring multiple ways of marrying the display screen with the computer components. Its shape was inspired by a sunflower, with the display connected to the base via an adjustable stainless-steel arm that allows the monitor to be freely tilted and swiveled. The product was a critical and commercial success for Apple, selling more than 1.3 million units in its first year, and it was updated with faster components and larger displays before being replaced by the iMac G5 in September 2004. The machine is held in the collections of multiple museums, including the Museum of Modern Art and Museums Victoria.

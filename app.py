@@ -3,9 +3,6 @@ import utility
 from flask_cors import CORS
 import argparse
 
-
-
-app.run(host=args.host, port=args.port, debug=args.debug)
 app = Flask(__name__)
 CORS(app)
 
